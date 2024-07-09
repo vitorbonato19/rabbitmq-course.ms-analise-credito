@@ -4,16 +4,17 @@ import com.udemy.analisecredito.domain.Proposta;
 import com.udemy.analisecredito.service.strategy.CalculaPonto;
 import org.springframework.stereotype.Component;
 
-@Component
-public class RendaMaiorQueValorSolicitado implements CalculaPonto {
+import java.util.Random;
 
+@Component
+public class OutrosEmprestimosEmAndamentoImpl implements CalculaPonto {
 
     @Override
     public int calcular(Proposta proposta) {
-        return rendaMaiorQueValorSolicitado(proposta) ? 100 : 0;
+        return possuiEmprestimosEmAndamento() ? 0 : 67;
     }
 
-    private boolean rendaMaiorQueValorSolicitado(Proposta proposta) {
-        return proposta.getUsuario().getRenda() > proposta.getValorSolicitado();
+    private boolean possuiEmprestimosEmAndamento() {
+        return new Random().nextBoolean();
     }
 }

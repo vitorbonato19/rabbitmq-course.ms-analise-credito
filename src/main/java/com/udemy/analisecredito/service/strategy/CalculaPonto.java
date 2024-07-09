@@ -2,7 +2,7 @@ package com.udemy.analisecredito.service.strategy;
 
 import com.udemy.analisecredito.domain.Proposta;
 
-public interface Calcular {
+public interface CalculaPonto {
 
     int calcular(Proposta proposta);
 }

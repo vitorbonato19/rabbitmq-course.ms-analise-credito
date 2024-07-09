@@ -9,19 +9,26 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-@Order(1)
+@Order(2)
 @Component
-public class NomeNegativadoImpl implements CalculaPonto {
+public class PontuacaoScoreImpl implements CalculaPonto {
 
     @Override
     public int calcular(Proposta proposta) {
-        if (nomeNegativado()) {
-            throw new StrategyException(String.format(MensagensDefault.CLIENTE_NEGATIVADO, proposta.getUsuario().getNome()));
+        int score = score();
+
+        if (score < 200) {
+            throw new StrategyException(String.format(MensagensDefault.SCORE_SERASA_BAIXO, proposta.getUsuario().getNome()));
+        } else if (score <= 400) {
+            return 210;
+        } else if (score <= 600) {
+            return 312;
+        } else {
+            return 500;
         }
-        return 100;
     }
 
-    private boolean nomeNegativado() {
-        return new Random().nextBoolean();
+    private int score() {
+        return new Random().nextInt(0, 1000);
     }
 }
